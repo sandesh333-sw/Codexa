@@ -15,7 +15,6 @@ enum UserRole {
 
 model User {
   id Int @id @default(autoincrement())
-  name String
   clerkId String @unique
   email String @unique
   role UserRole @default(USER)
