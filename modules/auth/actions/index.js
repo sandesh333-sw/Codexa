@@ -3,6 +3,7 @@
 import { db } from "@/lib/db";
 import { currentUser } from "@clerk/nextjs/server";
 
+
 export const onBoardUser = async () => {
   try {
     const user = await currentUser();
@@ -42,4 +43,30 @@ export const onBoardUser = async () => {
       error: "Failed to onboard user",
     };
   }
+};
+
+export const currentUserRole = async () => {
+    try {
+        const user = await currentUser();
+
+        if (!user) {
+            return { success: false, error: "No authenticated user found" };
+        }
+
+        const { id } = user;
+
+        const userRole = await db.user.findUnique({
+            where: {
+                clerkId: id
+            },
+            select: {
+                role: true
+            }
+        }); 
+
+        return userRole.role;
+    } catch (error) {
+        console.error(" Error fetching user role:", error);
+        return { success: false, error: "Failed to fetch user role" };
+    }
 };
