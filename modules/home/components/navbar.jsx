@@ -7,7 +7,6 @@ import Link from "next/link";
 import Image from "next/image";
 
 import { ModeToggle } from "@/components/ui/mode-toggle";
-//import { UserRole } from "@prisma/client";
 
 const Navbar = ({ userRole }) => {
   return (
@@ -24,19 +23,19 @@ const Navbar = ({ userRole }) => {
           <div className="flex flex-row items-center justify-center gap-x-4">
             <Link
               href="/problems"
-              className="text-sm font-medium text-zinc-600 dark:text-zinc-400  hover:text-amber-600 cursor-pointer dark:hover:text-amber-400"
+              className="text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-amber-600 cursor-pointer dark:hover:text-amber-400"
             >
               Problems
             </Link>
-              <Link
+            <Link
               href="/about"
-              className="text-sm font-medium text-zinc-600 dark:text-zinc-400  hover:text-amber-600 cursor-pointer dark:hover:text-amber-400"
+              className="text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-amber-600 cursor-pointer dark:hover:text-amber-400"
             >
               About
             </Link>
             <Link
               href="/profile"
-              className="text-sm font-medium text-zinc-600 dark:text-zinc-400  hover:text-amber-600 cursor-pointer dark:hover:text-amber-400"
+              className="text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-amber-600 cursor-pointer dark:hover:text-amber-400"
             >
               Profile
             </Link>
@@ -44,10 +43,11 @@ const Navbar = ({ userRole }) => {
 
           <div className="flex items-center gap-4">
             <ModeToggle />
+
             <SignedIn>
-              {userRole && userRole === UserRole.ADMIN && (
+              {userRole === "ADMIN" && (
                 <Link href={"/create-problem"}>
-                  <Button variant={"outline"} size={"default"}>
+                  <Button variant="outline" size="default">
                     Create Problem
                   </Button>
                 </Link>
